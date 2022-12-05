@@ -1,0 +1,8 @@
+{
+    "python.pythonPath": "C:\\Program Files\\Python39\\python.exe",
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 160,
+    "[python]": {
+        "editor.formatOnSave": false
+    }
+}
