@@ -1,5 +1,5 @@
 from helpers.problemrunner import run_problem
-from numpy import sign
+from numpy import sign, array
 
 
 @run_problem
@@ -15,34 +15,17 @@ def run():
     return len(rope.tail_positions)
 
 
-class Position():
-    def __init__(self, x ,y):
-        self.x = x
-        self.y = y
-
-    def __iadd__(self, offset):
-        self.x += offset.x
-        self.y += offset.y
-        return self
-
-    def __sub__(self, offset):
-        return Position(self.x - offset.x, self.y - offset.y)
-
-    def decompose(self):
-        return (self.x, self.y)
-
-
 class Rope:
     step = {
-        "U": Position(0, -1),
-        "R": Position(1, 0),
-        "D": Position(0, 1),
-        "L": Position(-1, 0)
+        "U": array([0, -1]),
+        "R": array([1, 0]),
+        "D": array([0, 1]),
+        "L": array([-1, 0])
     }
 
     def __init__(self):
-        self.head = Position(0, 0)
-        self.tail = Position(0, 0)
+        self.head = array([0, 0])
+        self.tail = array([0, 0])
         self.tail_positions = set([(0, 0)])
 
     def move_head(self, direction, steps):
@@ -54,11 +37,12 @@ class Rope:
         self.follow_head()
 
     def follow_head(self):
-        (x, y) = (self.head - self.tail).decompose()
+        distance = self.head - self.tail
+        x, y = distance[0], distance[1]
         if abs(x) < 2 and abs(y) < 2:
             return
-        self.tail += Position(sign(x), sign(y))
-        self.tail_positions.add(self.tail.decompose())
+        self.tail += array([sign(x), sign(y)])
+        self.tail_positions.add((self.tail[0], self.tail[1]))
 
 
 run()
