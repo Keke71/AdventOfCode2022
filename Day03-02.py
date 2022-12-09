@@ -12,7 +12,6 @@ def run():
         duplicate_item = list(set.intersection(*map(set, group)))[0]
         sum += get_priority(duplicate_item)
 
-
     return sum
 
 
