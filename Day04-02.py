@@ -12,8 +12,8 @@ def run():
 
 class SectionRange:
     def __init__(self, section_definition):
-        boundaries = section_definition.split('-')
-        self.range = range(int(boundaries[0]), int(boundaries[1]) + 1)
+        lower, upper = section_definition.split('-')
+        self.range = range(int(lower), int(upper) + 1)
 
     def overlap(self, other_section):
         return len(set(self.range).intersection(other_section.range)) > 0

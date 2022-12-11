@@ -12,9 +12,9 @@ def run():
 
 class SectionRange:
     def __init__(self, section_definition):
-        boundaries = section_definition.split('-')
-        self.from_section = int(boundaries[0])
-        self.to_section = int(boundaries[1])
+        lower, upper = section_definition.split('-')
+        self.from_section = int(lower)
+        self.to_section = int(upper)
 
     def fully_included(self, other_section):
         return self.from_section <= other_section.from_section and self.to_section >= other_section.to_section\

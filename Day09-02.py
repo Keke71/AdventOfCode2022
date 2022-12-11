@@ -37,8 +37,7 @@ class Rope:
 
     def follow_head(self):
         for i in range(1, len(self.knots)):
-            distance = self.knots[i-1] - self.knots[i]
-            x, y = distance[0], distance[1]
+            x, y = self.knots[i-1] - self.knots[i]
             if abs(x) < 2 and abs(y) < 2:
                 continue
             self.knots[i] += array([sign(x), sign(y)])

@@ -32,9 +32,9 @@ def run():
 
     moves = []
     for move_line in move_lines:
-        split1 = move_line.split(" from ")
-        split2 = split1[1].split(" to ")
-        moves.append(Move(int(split1[0]), int(split2[0]) - 1, int(split2[1]) - 1))
+        count, fromTo = move_line.split(" from ")
+        from_, to = fromTo.split(" to ")
+        moves.append(Move(int(count), int(from_) - 1, int(to) - 1))
 
     storage = Storage(stacks)
     storage.apply_moves(moves)

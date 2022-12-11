@@ -37,8 +37,7 @@ class Rope:
         self.follow_head()
 
     def follow_head(self):
-        distance = self.head - self.tail
-        x, y = distance[0], distance[1]
+        x, y = self.head - self.tail
         if abs(x) < 2 and abs(y) < 2:
             return
         self.tail += array([sign(x), sign(y)])
