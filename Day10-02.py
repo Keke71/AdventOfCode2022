@@ -34,7 +34,6 @@ class SignalParser:
                 self.cycle += 1
                 self.draw_pixel()
                 self.x += int(operation.split()[1])
-        return sum
 
 
     def draw_pixel(self):
