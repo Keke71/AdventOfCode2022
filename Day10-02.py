@@ -38,7 +38,7 @@ class SignalParser:
 
     def draw_pixel(self):
         position_in_line = self.cycle % self.width - 1;
-        if position_in_line >= self.x - 1 and position_in_line <= self.x + 1:
+        if abs(self.x - position_in_line) <= 1:
             self.output[self.current_line][position_in_line] = "#"
                     
 
