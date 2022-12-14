@@ -1,10 +1,11 @@
+from functools import reduce
 from helpers.problemrunner import run_problem
 
 
 @run_problem
 def run():
     monkey_length = 6
-    rounds = 20
+    rounds = 10000
 
     with open("Day11.txt") as f:
         lines = list(filter(None, (line.rstrip() for line in f)))
@@ -14,14 +15,14 @@ def run():
     for monkey_number, lines_per_monkey in enumerate(monkey_lines):
         monkey = create_monkey(monkey_number, lines_per_monkey)
         monkeys.append(monkey)
-        
+
+    divisor = reduce(lambda a, b: a * b, [d.test_func.divisible_by for d in monkeys])
     for i in range(rounds):
         print(i)
         for monkey in monkeys:
             while len(monkey.items) > 0:
                 (thrown_item, target) = monkey.throw_first_item()
-                # monkeys[target].items.append(thrown_item)
-                monkeys[target].append_item(thrown_item)
+                monkeys[target].items.append(thrown_item % divisor)
 
     inspection_counts = sorted([x.inspection_count for x in monkeys], reverse=True)
 
@@ -81,11 +82,5 @@ class Monkey:
             return lambda x: x * int(argument)
 
         return lambda x: x + int(argument)
-
-    def append_item(self, item):
-        self.items.append(item % self.test_func.divisible_by)
-
-    def print_items(self):
-        print(f"{self.items}")
 
 run()
