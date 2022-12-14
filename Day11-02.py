@@ -7,7 +7,7 @@ def run():
     monkey_length = 6
     rounds = 10000
 
-    with open("Day11.txt") as f:
+    with open("Day12.txt") as f:
         lines = list(filter(None, (line.rstrip() for line in f)))
 
     monkey_lines = [lines[i: i + monkey_length] for i in range(0, len(lines), monkey_length)]
