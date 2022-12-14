@@ -1,4 +1,3 @@
-from ast import operator
 from helpers.problemrunner import run_problem
 
 
