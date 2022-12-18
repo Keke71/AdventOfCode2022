@@ -26,10 +26,10 @@ class HeightMap():
             q = sorted(self.open_list, key=lambda x: x.distance)[0]
             self.open_list.remove(q)
             self.closed_list.add(q)
-            self.add_to_open_list(q, q.x + 1, q.y)
-            self.add_to_open_list(q, q.x, q.y + 1)
-            self.add_to_open_list(q, q.x - 1, q.y)
-            self.add_to_open_list(q, q.x, q.y - 1)
+            self.add_to_open_list(q.x + 1, q.y)
+            self.add_to_open_list(q.x, q.y + 1)
+            self.add_to_open_list(q.x - 1, q.y)
+            self.add_to_open_list(q.x, q.y - 1)
             self.update_distance(q, q.x + 1, q.y)
             self.update_distance(q, q.x, q.y + 1)
             self.update_distance(q, q.x - 1, q.y)
@@ -37,7 +37,7 @@ class HeightMap():
                 
         return self.terrain[stop[1]][stop[0]].distance
     
-    def add_to_open_list(self, landmark, x, y):
+    def add_to_open_list(self, x, y):
         if 0 <= x < self.width and 0 <= y < self.height:
             neighbour = self.terrain[y][x]
             if neighbour not in self.open_list and neighbour not in self.closed_list:
